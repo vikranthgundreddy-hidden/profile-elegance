@@ -48,7 +48,7 @@ function BiodataPage() {
   if (state === "checking") return <div className="min-h-screen flex items-center justify-center text-navy/50">Preparing biodata…</div>;
   if (state === "denied") return <div className="min-h-screen flex items-center justify-center text-navy/60">Access denied.</div>;
 
-  const rows: Array<[string, any]> = pd ? [
+  const allRows: Array<[string, any]> = pd ? [
     ["Full Name", pd.full_name], ["Age", pd.age], ["Date of Birth", pd.date_of_birth],
     ["Height", pd.height], ["Blood Group", pd.blood_group], ["Marital Status", pd.marital_status],
     ["Religion", pd.religion], ["Caste", pd.caste], ["Mother Tongue", pd.mother_tongue],
@@ -57,7 +57,8 @@ function BiodataPage() {
     ["Occupation", pd.occupation], ["Current Role", pd.current_position], ["Organization", pd.organization],
     ["Work Location", pd.work_location], ["Experience", pd.experience], ["Annual Salary", pd.annual_salary],
     ["Food Preference", pd.food_preference], ["Smoking", pd.smoking], ["Drinking", pd.drinking],
-  ].filter(([, v]) => v) : [];
+  ] : [];
+  const rows = allRows.filter(([, v]) => v);
 
   return (
     <div className="min-h-screen bg-white text-navy">

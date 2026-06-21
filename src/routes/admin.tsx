@@ -92,7 +92,7 @@ function useSingleton(table: "profile" | "personal_details" | "private_details")
   });
   const save = async (patch: Record<string, any>) => {
     if (!q.data?.id) { toast.error("No row to update"); return; }
-    const { error } = await supabase.from(table).update(patch).eq("id", q.data.id);
+    const { error } = await (supabase.from(table) as any).update(patch).eq("id", q.data.id);
     if (error) { toast.error(error.message); return; }
     toast.success("Saved");
     qc.invalidateQueries({ queryKey: ["admin", table] });

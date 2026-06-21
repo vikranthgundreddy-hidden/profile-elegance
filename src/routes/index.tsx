@@ -392,9 +392,10 @@ function About({ profile }: { profile: any }) {
 function AboutCard({ title, body }: { title: string; body?: string | null }) {
   return (
     <Reveal>
-      <div className="bg-ivory p-6 ring-1 ring-navy/8 rounded-sm">
-        <span className="font-display text-2xl text-gold block mb-2">{title}</span>
-        <p className="text-sm text-navy/65 leading-relaxed">{body}</p>
+      <div className="group relative bg-ivory p-6 ring-1 ring-navy/8 rounded-sm overflow-hidden hover:ring-gold/40 transition-all">
+        <span aria-hidden className="absolute top-0 left-0 h-[2px] w-12 bg-gold group-hover:w-full transition-all duration-500" />
+        <span className="font-display italic text-2xl text-gold block mb-2">{title}</span>
+        <p className="text-sm text-navy/65 leading-relaxed text-pretty">{body}</p>
       </div>
     </Reveal>
   );

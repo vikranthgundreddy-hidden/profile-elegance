@@ -39,7 +39,7 @@ export const Route = createFileRoute("/")({
     ],
     links: [
       { rel: "canonical", href: "/" },
-      { rel: "preload", as: "image", href: heroPortrait, fetchpriority: "high" },
+      { rel: "preload", as: "image", href: heroPortrait, fetchPriority: "high" },
     ],
     scripts: [{
       type: "application/ld+json",
@@ -253,7 +253,7 @@ function Hero({ profile }: { profile: any }) {
                 alt={`Portrait of ${profile?.name ?? "Vikranth"}`}
                 width={1024} height={1280}
                 className="w-full h-full object-cover"
-                fetchPriority="high"
+                fetchPriority={"high" as any}
               />
             </div>
             <motion.div

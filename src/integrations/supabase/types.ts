@@ -14,7 +14,372 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      bride_photos: {
+        Row: {
+          created_at: string
+          id: string
+          name: string
+          note: string | null
+          photo_url: string
+          storage_path: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          name: string
+          note?: string | null
+          photo_url: string
+          storage_path?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          name?: string
+          note?: string | null
+          photo_url?: string
+          storage_path?: string | null
+        }
+        Relationships: []
+      }
+      gallery: {
+        Row: {
+          caption: string | null
+          created_at: string
+          id: string
+          image_url: string
+          sort_order: number
+          storage_path: string | null
+        }
+        Insert: {
+          caption?: string | null
+          created_at?: string
+          id?: string
+          image_url: string
+          sort_order?: number
+          storage_path?: string | null
+        }
+        Update: {
+          caption?: string | null
+          created_at?: string
+          id?: string
+          image_url?: string
+          sort_order?: number
+          storage_path?: string | null
+        }
+        Relationships: []
+      }
+      hobbies: {
+        Row: {
+          created_at: string
+          description: string | null
+          icon: string | null
+          id: string
+          name: string
+          sort_order: number
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          icon?: string | null
+          id?: string
+          name: string
+          sort_order?: number
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          icon?: string | null
+          id?: string
+          name?: string
+          sort_order?: number
+        }
+        Relationships: []
+      }
+      meeting_requests: {
+        Row: {
+          contact: string
+          created_at: string
+          id: string
+          location: string | null
+          name: string
+          notes: string | null
+          timings: string | null
+        }
+        Insert: {
+          contact: string
+          created_at?: string
+          id?: string
+          location?: string | null
+          name: string
+          notes?: string | null
+          timings?: string | null
+        }
+        Update: {
+          contact?: string
+          created_at?: string
+          id?: string
+          location?: string | null
+          name?: string
+          notes?: string | null
+          timings?: string | null
+        }
+        Relationships: []
+      }
+      personal_details: {
+        Row: {
+          age: string | null
+          annual_salary: string | null
+          blood_group: string | null
+          caste: string | null
+          college: string | null
+          created_at: string
+          current_city: string | null
+          current_position: string | null
+          date_of_birth: string | null
+          drinking: string | null
+          education: string | null
+          experience: string | null
+          food_preference: string | null
+          full_name: string | null
+          future_goals: string | null
+          height: string | null
+          id: string
+          marital_status: string | null
+          mother_tongue: string | null
+          native_place: string | null
+          occupation: string | null
+          organization: string | null
+          religion: string | null
+          smoking: string | null
+          updated_at: string
+          weight: string | null
+          work_location: string | null
+        }
+        Insert: {
+          age?: string | null
+          annual_salary?: string | null
+          blood_group?: string | null
+          caste?: string | null
+          college?: string | null
+          created_at?: string
+          current_city?: string | null
+          current_position?: string | null
+          date_of_birth?: string | null
+          drinking?: string | null
+          education?: string | null
+          experience?: string | null
+          food_preference?: string | null
+          full_name?: string | null
+          future_goals?: string | null
+          height?: string | null
+          id?: string
+          marital_status?: string | null
+          mother_tongue?: string | null
+          native_place?: string | null
+          occupation?: string | null
+          organization?: string | null
+          religion?: string | null
+          smoking?: string | null
+          updated_at?: string
+          weight?: string | null
+          work_location?: string | null
+        }
+        Update: {
+          age?: string | null
+          annual_salary?: string | null
+          blood_group?: string | null
+          caste?: string | null
+          college?: string | null
+          created_at?: string
+          current_city?: string | null
+          current_position?: string | null
+          date_of_birth?: string | null
+          drinking?: string | null
+          education?: string | null
+          experience?: string | null
+          food_preference?: string | null
+          full_name?: string | null
+          future_goals?: string | null
+          height?: string | null
+          id?: string
+          marital_status?: string | null
+          mother_tongue?: string | null
+          native_place?: string | null
+          occupation?: string | null
+          organization?: string | null
+          religion?: string | null
+          smoking?: string | null
+          updated_at?: string
+          weight?: string | null
+          work_location?: string | null
+        }
+        Relationships: []
+      }
+      private_details: {
+        Row: {
+          additional_info: string | null
+          assets_information: string | null
+          created_at: string
+          family_info: string | null
+          future_plans: string | null
+          id: string
+          salary_details: string | null
+          sensitive_details: string | null
+          updated_at: string
+        }
+        Insert: {
+          additional_info?: string | null
+          assets_information?: string | null
+          created_at?: string
+          family_info?: string | null
+          future_plans?: string | null
+          id?: string
+          salary_details?: string | null
+          sensitive_details?: string | null
+          updated_at?: string
+        }
+        Update: {
+          additional_info?: string | null
+          assets_information?: string | null
+          created_at?: string
+          family_info?: string | null
+          future_plans?: string | null
+          id?: string
+          salary_details?: string | null
+          sensitive_details?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      profile: {
+        Row: {
+          about_intro: string | null
+          career_journey: string | null
+          created_at: string
+          current_position: string | null
+          education: string | null
+          email: string | null
+          experience: string | null
+          family_overview: string | null
+          hero_image_url: string | null
+          id: string
+          intro: string
+          life_goals: string | null
+          linkedin: string | null
+          location: string | null
+          marriage_expectations: string | null
+          name: string
+          personal_values: string | null
+          phone: string | null
+          professional_summary: string
+          tagline: string
+          updated_at: string
+          whatsapp: string | null
+        }
+        Insert: {
+          about_intro?: string | null
+          career_journey?: string | null
+          created_at?: string
+          current_position?: string | null
+          education?: string | null
+          email?: string | null
+          experience?: string | null
+          family_overview?: string | null
+          hero_image_url?: string | null
+          id?: string
+          intro?: string
+          life_goals?: string | null
+          linkedin?: string | null
+          location?: string | null
+          marriage_expectations?: string | null
+          name?: string
+          personal_values?: string | null
+          phone?: string | null
+          professional_summary?: string
+          tagline?: string
+          updated_at?: string
+          whatsapp?: string | null
+        }
+        Update: {
+          about_intro?: string | null
+          career_journey?: string | null
+          created_at?: string
+          current_position?: string | null
+          education?: string | null
+          email?: string | null
+          experience?: string | null
+          family_overview?: string | null
+          hero_image_url?: string | null
+          id?: string
+          intro?: string
+          life_goals?: string | null
+          linkedin?: string | null
+          location?: string | null
+          marriage_expectations?: string | null
+          name?: string
+          personal_values?: string | null
+          phone?: string | null
+          professional_summary?: string
+          tagline?: string
+          updated_at?: string
+          whatsapp?: string | null
+        }
+        Relationships: []
+      }
+      queries: {
+        Row: {
+          contact: string
+          created_at: string
+          id: string
+          message: string
+          name: string
+        }
+        Insert: {
+          contact: string
+          created_at?: string
+          id?: string
+          message: string
+          name: string
+        }
+        Update: {
+          contact?: string
+          created_at?: string
+          id?: string
+          message?: string
+          name?: string
+        }
+        Relationships: []
+      }
+      timeline: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          sort_order: number
+          subtitle: string | null
+          title: string
+          year: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          sort_order?: number
+          subtitle?: string | null
+          title: string
+          year: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          sort_order?: number
+          subtitle?: string | null
+          title?: string
+          year?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

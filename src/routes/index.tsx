@@ -381,7 +381,7 @@ function Journey({ items }: { items: any[] }) {
 // ============ PERSONAL DETAILS ============
 function PersonalDetails({ pd }: { pd: any }) {
   if (!pd) return null;
-  const rows: Array<[string, string | null | undefined]> = [
+  const allRows: Array<[string, string | null | undefined]> = [
     ["Full Name", pd.full_name],
     ["Age", pd.age],
     ["Date of Birth", pd.date_of_birth],
@@ -406,7 +406,8 @@ function PersonalDetails({ pd }: { pd: any }) {
     ["Smoking", pd.smoking],
     ["Drinking", pd.drinking],
     ["Future Goals", pd.future_goals],
-  ].filter(([, v]) => v && String(v).trim().length > 0);
+  ];
+  const rows = allRows.filter(([, v]) => v && String(v).trim().length > 0);
 
   return (
     <section id="details" className="py-32 px-6 bg-cream">

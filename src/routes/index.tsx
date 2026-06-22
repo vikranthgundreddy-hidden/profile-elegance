@@ -757,7 +757,7 @@ function MeetingForm() {
         <>
           {yes === null ? (
             <div className="flex gap-3">
-              <button onClick={() => setYes(true)} className="flex-1 py-3 bg-gold text-navy text-[11px] uppercase tracking-[0.25em] hover:bg-gold-soft transition-colors">Yes</button>
+              <button onClick={() => setYes(true)} className="flex-1 py-3 ring-1 ring-navy/15 text-navy text-[11px] uppercase tracking-[0.25em] hover:bg-cream transition-colors">Yes</button>
               <button onClick={() => setYes(false)} className="flex-1 py-3 ring-1 ring-navy/15 text-navy text-[11px] uppercase tracking-[0.25em] hover:bg-cream transition-colors">No</button>
             </div>
           ) : yes === false ? (

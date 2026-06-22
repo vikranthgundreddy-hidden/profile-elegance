@@ -263,13 +263,13 @@ function Hero({ profile }: { profile: any }) {
           <motion.div
             initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="relative w-full max-w-4xl"
+            className="relative w-full max-w-2xl"
           >
             {/* Offset gold frame */}
-            <div aria-hidden className="absolute -inset-3 md:-inset-5 border border-gold/40 translate-x-3 translate-y-3 md:translate-x-5 md:translate-y-5 rounded-sm -z-10" />
-            <div aria-hidden className="absolute -inset-3 md:-inset-5 bg-cream -translate-x-3 -translate-y-3 md:-translate-x-5 md:-translate-y-5 rounded-sm -z-10" />
+            <div aria-hidden className="absolute -inset-2 md:-inset-4 border border-gold/40 translate-x-2 translate-y-2 md:translate-x-4 md:translate-y-4 rounded-sm -z-10" />
+            <div aria-hidden className="absolute -inset-2 md:-inset-4 bg-cream -translate-x-2 -translate-y-2 md:-translate-x-4 md:-translate-y-4 rounded-sm -z-10" />
 
-            <div className="relative w-full aspect-[4/5] md:aspect-[16/10] bg-cream rounded-sm overflow-hidden ring-1 ring-navy/8 shadow-editorial">
+            <div className="relative w-full aspect-[4/5] md:aspect-[3/2] bg-cream rounded-sm overflow-hidden ring-1 ring-navy/8 shadow-editorial">
               <img
                 src={profile?.hero_image_url || heroPortrait}
                 alt={`Portrait of ${name}`}

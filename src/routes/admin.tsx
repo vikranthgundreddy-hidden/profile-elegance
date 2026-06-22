@@ -296,7 +296,7 @@ function GalleryEditor() {
           const { data: signed, error: signError } = await supabase.storage
             .from("gallery")
             .createSignedUrl(row.storage_path, 3600);
-          return { ...row, image_url: signError ? row.image_url : signed.signedUrl };
+          return { ...row, image_url: signError ? row.image_url : (signed?.signedUrl ?? row.image_url) };
         }),
       );
     },

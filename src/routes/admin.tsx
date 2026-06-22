@@ -289,7 +289,16 @@ function GalleryEditor() {
     queryFn: async () => {
       const { data, error } = await supabase.from("gallery").select("*").order("sort_order");
       if (error) throw error;
-      return data ?? [];
+      const rows = data ?? [];
+      return Promise.all(
+        rows.map(async (row) => {
+          if (!row.storage_path) return row;
+          const { data: signed, error: signError } = await supabase.storage
+            .from("gallery")
+            .createSignedUrl(row.storage_path, 3600);
+          return { ...row, image_url: signError ? row.image_url : (signed?.signedUrl ?? row.image_url) };
+        }),
+      );
     },
   });
   const refresh = () => { qc.invalidateQueries({ queryKey: ["admin", "gallery"] }); qc.invalidateQueries({ queryKey: ["gallery"] }); };
@@ -300,9 +309,10 @@ function GalleryEditor() {
     const path = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
     const { error: upErr } = await supabase.storage.from("gallery").upload(path, file, { contentType: file.type });
     if (upErr) { setUploading(false); toast.error(upErr.message); return; }
-    const { data: pub } = supabase.storage.from("gallery").getPublicUrl(path);
+    const { data: signed, error: signError } = await supabase.storage.from("gallery").createSignedUrl(path, 3600);
+    if (signError) { setUploading(false); toast.error(signError.message); return; }
     const { error: dbErr } = await supabase.from("gallery").insert({
-      image_url: pub.publicUrl, storage_path: path, sort_order: (data?.length ?? 0) + 1,
+      image_url: signed.signedUrl, storage_path: path, sort_order: (data?.length ?? 0) + 1,
     });
     setUploading(false);
     if (dbErr) toast.error(dbErr.message); else { toast.success("Uploaded"); refresh(); }

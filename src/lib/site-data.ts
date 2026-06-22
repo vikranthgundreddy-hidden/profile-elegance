@@ -34,7 +34,17 @@ export const galleryQuery = queryOptions({
   queryFn: async () => {
     const { data, error } = await supabase.from("gallery").select("*").order("sort_order");
     if (error) throw error;
-    return data ?? [];
+    const rows = data ?? [];
+    // Gallery bucket is private; sign URLs at read time.
+    const signed = await Promise.all(
+      rows.map(async (row) => {
+        const path = row.storage_path;
+        if (!path) return row;
+        const { data: s } = await supabase.storage.from("gallery").createSignedUrl(path, 3600);
+        return { ...row, image_url: s?.signedUrl ?? row.image_url };
+      }),
+    );
+    return signed;
   },
 });
 

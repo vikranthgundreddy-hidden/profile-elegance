@@ -219,137 +219,151 @@ function Hero({ profile }: { profile: any }) {
   const [first, ...rest] = name.split(" ");
   const last = rest.join(" ");
   return (
-    <section id="home" className="relative pt-10 md:pt-16 pb-32 px-6 overflow-hidden">
+    <section id="home" className="relative pt-10 md:pt-16 pb-24 px-6 overflow-hidden bg-gradient-to-b from-cream/60 via-ivory to-ivory">
       {/* Decorative background ornaments */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute -top-24 -left-24 w-[420px] h-[420px] rounded-full bg-gold/8 blur-3xl" />
-        <div className="absolute top-40 -right-32 w-[520px] h-[520px] rounded-full bg-navy/5 blur-3xl" />
-        <svg className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.04]" width="1200" height="1200" viewBox="0 0 200 200" fill="none">
-          <circle cx="100" cy="100" r="80" stroke="currentColor" strokeWidth="0.3" />
-          <circle cx="100" cy="100" r="60" stroke="currentColor" strokeWidth="0.3" />
-          <circle cx="100" cy="100" r="40" stroke="currentColor" strokeWidth="0.3" />
+        <div className="absolute -top-24 -left-24 w-[420px] h-[420px] rounded-full bg-gold/10 blur-3xl" />
+        <div className="absolute top-40 -right-32 w-[520px] h-[520px] rounded-full bg-navy/8 blur-3xl" />
+        <svg aria-hidden className="absolute inset-0 w-full h-full opacity-[0.04]" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+              <path d="M 32 0 L 0 0 0 32" fill="none" stroke="currentColor" strokeWidth="0.4" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#grid)" />
         </svg>
       </div>
 
       <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col items-center">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="flex items-center gap-3 mb-6"
-          >
-            <span className="h-px w-8 bg-gold/60" />
-            <span className="text-[11px] uppercase tracking-[0.4em] text-gold">Personal Portfolio · MMXXVI</span>
-            <span className="h-px w-8 bg-gold/60" />
-          </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="flex items-center justify-center gap-3 mb-8"
+        >
+          <span className="h-px w-8 bg-gold/60" />
+          <span className="text-[11px] uppercase tracking-[0.4em] text-gold">Personal Portfolio · MMXXVI</span>
+          <span className="h-px w-8 bg-gold/60" />
+        </motion.div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="font-display text-6xl md:text-8xl lg:text-[9rem] leading-[0.9] text-center text-balance mb-2"
-          >
-            <span className="block text-navy/90">Hello, I&apos;m</span>
-            <span className="block italic text-gold tracking-tight">{first}{last ? <span className="not-italic text-navy"> {last}</span> : null}</span>
-          </motion.h1>
+        {/* Split-screen hero — chatfolio-inspired dark portrait panel */}
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+          {/* LEFT — copy */}
+          <div className="lg:col-span-6 order-2 lg:order-1">
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="font-display text-5xl md:text-7xl lg:text-8xl leading-[0.95] text-balance"
+            >
+              <span className="block text-navy/60 text-3xl md:text-4xl lg:text-5xl mb-2">Hello, I&apos;m</span>
+              <span className="block italic text-gold tracking-tight">{first}</span>
+              {last ? <span className="block text-navy">{last}</span> : null}
+            </motion.h1>
 
-          <motion.p
-            initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 0.3 }}
-            className="font-display italic text-xl md:text-2xl text-navy/55 text-center max-w-2xl text-balance mb-14 mt-4"
-          >
-            “{profile?.intro}”
-          </motion.p>
+            <motion.p
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 0.3 }}
+              className="font-display italic text-lg md:text-xl text-navy/75 max-w-xl text-pretty mt-6 border-l-2 border-gold/50 pl-4"
+            >
+              “{profile?.intro}”
+            </motion.p>
 
-          {/* Cinematic portrait composition */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.7 }}
+              className="mt-8 flex flex-wrap gap-3"
+            >
+              <a href="#journey" className="group px-6 py-3.5 bg-navy text-ivory text-[11px] uppercase tracking-[0.25em] hover:bg-navy-soft transition-all active:scale-[0.98] inline-flex items-center gap-2 rounded-sm">
+                View My Journey
+                <ChevronRight className="size-3.5 transition-transform group-hover:translate-x-0.5" />
+              </a>
+              <a href="#contact" className="px-6 py-3.5 ring-1 ring-navy/20 text-navy text-[11px] uppercase tracking-[0.25em] hover:bg-cream transition-all active:scale-[0.98] rounded-sm">
+                Contact Me
+              </a>
+              <button onClick={() => setPdfOpen(true)} className="px-6 py-3.5 ring-1 ring-gold/50 text-gold text-[11px] uppercase tracking-[0.25em] hover:bg-gold/5 transition-all active:scale-[0.98] inline-flex items-center gap-2 rounded-sm">
+                <Download className="size-3.5" /> Profile PDF
+              </button>
+            </motion.div>
+
+            {/* Stat strip */}
+            <motion.div
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.9 }}
+              className="mt-10 grid grid-cols-3 gap-4 max-w-md"
+            >
+              {[
+                { k: "Experience", v: profile?.experience },
+                { k: "Based in", v: profile?.location },
+                { k: "Role", v: profile?.current_position?.split("—")[0]?.trim() },
+              ].map((s, i) => (
+                <div key={i} className="border-t border-navy/15 pt-3">
+                  <p className="text-[10px] uppercase tracking-[0.25em] text-gold mb-1">{s.k}</p>
+                  <p className="text-sm font-medium text-navy/85 leading-snug">{s.v}</p>
+                </div>
+              ))}
+            </motion.div>
+          </div>
+
+          {/* RIGHT — compact dark portrait panel */}
           <motion.div
             initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="relative w-full max-w-2xl"
+            className="lg:col-span-6 order-1 lg:order-2 relative mx-auto w-full max-w-md"
           >
-            {/* Offset gold frame */}
-            <div aria-hidden className="absolute -inset-2 md:-inset-4 border border-gold/40 translate-x-2 translate-y-2 md:translate-x-4 md:translate-y-4 rounded-sm -z-10" />
-            <div aria-hidden className="absolute -inset-2 md:-inset-4 bg-cream -translate-x-2 -translate-y-2 md:-translate-x-4 md:-translate-y-4 rounded-sm -z-10" />
+            {/* Dark panel backdrop */}
+            <div aria-hidden className="absolute inset-0 bg-navy rounded-sm translate-x-3 translate-y-3 -z-10" />
+            <div aria-hidden className="absolute -inset-3 border border-gold/40 rounded-sm -z-10" />
 
-            <div className="relative w-full aspect-[4/5] md:aspect-[3/2] bg-cream rounded-sm overflow-hidden ring-1 ring-navy/8 shadow-editorial">
-              <img
-                src={profile?.hero_image_url || heroPortrait}
-                alt={`Portrait of ${name}`}
-                width={1024} height={1280}
-                className="w-full h-full object-cover scale-[1.02]"
-                fetchPriority={"high" as any}
-              />
-              {/* Cinematic gradient overlay */}
-              <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-navy/70 via-navy/10 to-transparent" />
-              <div aria-hidden className="absolute inset-0 bg-gradient-to-r from-navy/30 via-transparent to-transparent" />
+            <div className="relative bg-navy p-3 rounded-sm shadow-editorial">
+              <div className="relative w-full aspect-[4/5] overflow-hidden rounded-sm">
+                <img
+                  src={profile?.hero_image_url || heroPortrait}
+                  alt={`Portrait of ${name}`}
+                  width={800} height={1000}
+                  className="w-full h-full object-cover"
+                  fetchPriority={"high" as any}
+                />
+                <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-navy/70 via-transparent to-transparent" />
 
-              {/* Corner ticks */}
-              <div aria-hidden className="absolute top-4 left-4 w-6 h-6 border-l border-t border-gold/70" />
-              <div aria-hidden className="absolute top-4 right-4 w-6 h-6 border-r border-t border-gold/70" />
-              <div aria-hidden className="absolute bottom-4 left-4 w-6 h-6 border-l border-b border-gold/70" />
-              <div aria-hidden className="absolute bottom-4 right-4 w-6 h-6 border-r border-b border-gold/70" />
+                {/* Corner ticks */}
+                <div aria-hidden className="absolute top-3 left-3 w-5 h-5 border-l border-t border-gold/70" />
+                <div aria-hidden className="absolute top-3 right-3 w-5 h-5 border-r border-t border-gold/70" />
+                <div aria-hidden className="absolute bottom-3 left-3 w-5 h-5 border-l border-b border-gold/70" />
+                <div aria-hidden className="absolute bottom-3 right-3 w-5 h-5 border-r border-b border-gold/70" />
 
-              {/* Floating role label on portrait */}
-              <div className="absolute top-6 left-6 md:top-8 md:left-8 backdrop-blur-md bg-ivory/15 border border-ivory/25 px-3 py-1.5 text-[10px] uppercase tracking-[0.3em] text-ivory">
-                {profile?.current_position?.split("—")[0]?.trim() || "Tech Lead"}
+                <div className="absolute top-5 left-5 backdrop-blur-md bg-ivory/15 border border-ivory/25 px-3 py-1.5 text-[10px] uppercase tracking-[0.3em] text-ivory rounded-sm">
+                  {profile?.current_position?.split("—")[0]?.trim() || "Tech Lead"}
+                </div>
+
+                <div className="absolute bottom-5 left-5 right-5">
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <span className="size-1.5 rounded-full bg-gold animate-pulse" />
+                    <p className="text-[10px] uppercase tracking-[0.3em] text-gold-soft">Available for introductions</p>
+                  </div>
+                  <p className="font-display text-ivory text-base leading-snug text-pretty">
+                    {profile?.professional_summary?.slice(0, 110)}{profile?.professional_summary && profile.professional_summary.length > 110 ? "…" : ""}
+                  </p>
+                </div>
               </div>
             </div>
-
-            {/* Floating identity card */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.7 }}
-              className="absolute -bottom-12 left-1/2 md:left-auto md:right-0 -translate-x-1/2 md:translate-x-6 translate-y-0 bg-ivory p-6 md:p-7 ring-1 ring-navy/10 shadow-editorial max-w-[300px] md:max-w-sm rounded-sm"
-            >
-              <div className="flex items-center gap-2 mb-3">
-                <span className="size-1.5 rounded-full bg-gold animate-pulse" />
-                <p className="text-[10px] uppercase tracking-[0.3em] text-gold">The Professional</p>
-              </div>
-              <p className="font-display text-base md:text-lg text-navy/85 leading-relaxed text-pretty">
-                {profile?.professional_summary}
-              </p>
-              <div className="mt-4 pt-4 border-t border-navy/10 flex items-center justify-between">
-                <span className="text-[10px] uppercase tracking-[0.25em] text-navy/40">{profile?.location}</span>
-                <ChevronRight className="size-3.5 text-gold" />
-              </div>
-            </motion.div>
           </motion.div>
+        </div>
 
-          {/* CTAs */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.9 }}
-            className="mt-32 md:mt-28 flex flex-wrap justify-center gap-3"
-          >
-            <a href="#journey" className="group px-7 py-3.5 bg-navy text-ivory text-[11px] uppercase tracking-[0.25em] hover:bg-navy-soft transition-all active:scale-[0.98] inline-flex items-center gap-2">
-              View My Journey
-              <ChevronRight className="size-3.5 transition-transform group-hover:translate-x-0.5" />
-            </a>
-            <a href="#contact" className="px-7 py-3.5 ring-1 ring-navy/15 text-navy text-[11px] uppercase tracking-[0.25em] hover:bg-cream transition-all active:scale-[0.98]">
-              Contact Me
-            </a>
-            <button onClick={() => setPdfOpen(true)} className="px-7 py-3.5 ring-1 ring-gold/40 text-gold text-[11px] uppercase tracking-[0.25em] hover:bg-gold/5 transition-all active:scale-[0.98] inline-flex items-center gap-2">
-              <Download className="size-3.5" /> Profile PDF
-            </button>
-          </motion.div>
-
-          {/* Info chips — gold-accent rail */}
-          <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-3 w-full max-w-5xl">
-            {[
-              { icon: Briefcase, label: "Current Role", value: profile?.current_position },
-              { icon: GraduationCap, label: "Education", value: profile?.education },
-              { icon: MapPin, label: "Location", value: profile?.location },
-              { icon: Cpu, label: "Experience", value: profile?.experience },
-            ].map((item, i) => (
-              <Reveal key={i} delay={i * 0.06}>
-                <div className="group relative p-5 bg-ivory ring-1 ring-navy/8 rounded-sm overflow-hidden hover:ring-gold/40 transition-all">
-                  <span aria-hidden className="absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-gold to-gold-soft" />
-                  <item.icon className="size-4 text-gold mb-3" />
-                  <p className="text-[10px] uppercase tracking-[0.2em] text-navy/40 mb-1">{item.label}</p>
-                  <p className="text-sm font-medium text-navy">{item.value}</p>
-                  <span aria-hidden className="absolute -bottom-8 -right-8 size-20 rounded-full bg-gold/5 group-hover:bg-gold/10 transition-colors" />
-                </div>
-              </Reveal>
-            ))}
-          </div>
+        {/* Info chips — gold-accent rail */}
+        <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-3 w-full max-w-5xl mx-auto">
+          {[
+            { icon: Briefcase, label: "Current Role", value: profile?.current_position },
+            { icon: GraduationCap, label: "Education", value: profile?.education },
+            { icon: MapPin, label: "Location", value: profile?.location },
+            { icon: Cpu, label: "Experience", value: profile?.experience },
+          ].map((item, i) => (
+            <Reveal key={i} delay={i * 0.06}>
+              <div className="group relative p-5 bg-ivory ring-1 ring-navy/10 rounded-sm overflow-hidden hover:ring-gold/40 hover:shadow-soft transition-all">
+                <span aria-hidden className="absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-gold to-gold-soft" />
+                <item.icon className="size-4 text-gold mb-3" />
+                <p className="text-[10px] uppercase tracking-[0.2em] text-navy/55 mb-1">{item.label}</p>
+                <p className="text-sm font-medium text-navy">{item.value}</p>
+                <span aria-hidden className="absolute -bottom-8 -right-8 size-20 rounded-full bg-gold/5 group-hover:bg-gold/10 transition-colors" />
+              </div>
+            </Reveal>
+          ))}
         </div>
       </div>
       <PdfDialog open={pdfOpen} onOpenChange={setPdfOpen} />

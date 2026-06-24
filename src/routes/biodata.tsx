@@ -118,6 +118,7 @@ function BiodataPage() {
           <p className="text-sm">{profile?.email}</p>
           <p className="text-sm">{profile?.phone}</p>
           {profile?.linkedin ? <p className="text-sm">{profile.linkedin}</p> : null}
+          {profile?.instagram ? <p className="text-sm">{profile.instagram}</p> : null}
           <p className="text-sm">{profile?.location}</p>
         </Section>
 

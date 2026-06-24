@@ -4,7 +4,7 @@ import { Suspense, useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, useScroll, useSpring, useTransform } from "framer-motion";
 import {
   Plane, BookOpen, Cpu, Dumbbell, Music, Camera, Film, ChefHat,
-  Mail, Phone, Linkedin, MapPin, Briefcase, GraduationCap, Lock,
+  Mail, Phone, Linkedin, Instagram, MapPin, Briefcase, GraduationCap, Lock,
   ArrowUp, MessageCircle, X, Menu, Download, ChevronRight, Sparkles,
   Heart, User, Star, Calendar, Globe, Award, Building2,
 } from "lucide-react";
@@ -493,6 +493,16 @@ function RotatingRole({ roles }: { roles: string[] }) {
       </span>
     </span>
   );
+}
+
+function externalUrl(value?: string | null, fallbackHost?: string) {
+  const trimmed = value?.trim();
+  if (!trimmed) return "";
+  if (/^https?:\/\//i.test(trimmed)) return trimmed;
+  if (fallbackHost && (trimmed.startsWith("@") || (!trimmed.includes(".") && !trimmed.includes("/")))) {
+    return `https://${fallbackHost}/${trimmed.replace(/^@/, "")}`;
+  }
+  return `https://${trimmed}`;
 }
 
 /* ============ ABOUT ============ */
@@ -1124,9 +1134,13 @@ function Footer({ profile }: { profile: any }) {
               <span className="size-8 rounded-lg glass-gold flex items-center justify-center group-hover:scale-110 transition-transform"><Phone className="size-3.5 text-gold" /></span>
               {profile.phone}
             </a> : null}
-            {profile?.linkedin ? <a href={profile.linkedin} target="_blank" rel="noreferrer" className="flex items-center gap-3 hover:text-gold transition-colors group">
+            {profile?.linkedin ? <a href={externalUrl(profile.linkedin)} target="_blank" rel="noreferrer" className="flex items-center gap-3 hover:text-gold transition-colors group">
               <span className="size-8 rounded-lg glass-gold flex items-center justify-center group-hover:scale-110 transition-transform"><Linkedin className="size-3.5 text-gold" /></span>
               LinkedIn
+            </a> : null}
+            {profile?.instagram ? <a href={externalUrl(profile.instagram, "instagram.com")} target="_blank" rel="noreferrer" className="flex items-center gap-3 hover:text-gold transition-colors group">
+              <span className="size-8 rounded-lg glass-gold flex items-center justify-center group-hover:scale-110 transition-transform"><Instagram className="size-3.5 text-gold" /></span>
+              Instagram
             </a> : null}
             {profile?.location ? <p className="flex items-center gap-3">
               <span className="size-8 rounded-lg glass-gold flex items-center justify-center"><MapPin className="size-3.5 text-gold" /></span>

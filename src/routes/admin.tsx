@@ -155,6 +155,7 @@ function ProfileEditor() {
           <TextField label="Email" name="email" value={data.email} />
           <TextField label="Phone" name="phone" value={data.phone} />
           <TextField label="LinkedIn URL" name="linkedin" value={data.linkedin} />
+          <TextField label="Instagram URL" name="instagram" value={data.instagram} />
           <TextField label="WhatsApp URL" name="whatsapp" value={data.whatsapp} />
         </FormGrid>
         <div className="flex justify-end mt-6">

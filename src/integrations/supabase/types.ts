@@ -263,6 +263,7 @@ export type Database = {
           family_overview: string | null
           hero_image_url: string | null
           id: string
+          instagram: string | null
           intro: string
           life_goals: string | null
           linkedin: string | null
@@ -287,6 +288,7 @@ export type Database = {
           family_overview?: string | null
           hero_image_url?: string | null
           id?: string
+          instagram?: string | null
           intro?: string
           life_goals?: string | null
           linkedin?: string | null
@@ -311,6 +313,7 @@ export type Database = {
           family_overview?: string | null
           hero_image_url?: string | null
           id?: string
+          instagram?: string | null
           intro?: string
           life_goals?: string | null
           linkedin?: string | null

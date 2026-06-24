@@ -495,11 +495,14 @@ function RotatingRole({ roles }: { roles: string[] }) {
   );
 }
 
-function externalUrl(value?: string | null) {
+function externalUrl(value?: string | null, fallbackHost?: string) {
   const trimmed = value?.trim();
   if (!trimmed) return "";
   if (/^https?:\/\//i.test(trimmed)) return trimmed;
-  return `https://${trimmed.replace(/^@/, "instagram.com/")}`;
+  if (fallbackHost && (trimmed.startsWith("@") || (!trimmed.includes(".") && !trimmed.includes("/")))) {
+    return `https://${fallbackHost}/${trimmed.replace(/^@/, "")}`;
+  }
+  return `https://${trimmed}`;
 }
 
 /* ============ ABOUT ============ */
@@ -1135,7 +1138,7 @@ function Footer({ profile }: { profile: any }) {
               <span className="size-8 rounded-lg glass-gold flex items-center justify-center group-hover:scale-110 transition-transform"><Linkedin className="size-3.5 text-gold" /></span>
               LinkedIn
             </a> : null}
-            {profile?.instagram ? <a href={externalUrl(profile.instagram)} target="_blank" rel="noreferrer" className="flex items-center gap-3 hover:text-gold transition-colors group">
+            {profile?.instagram ? <a href={externalUrl(profile.instagram, "instagram.com")} target="_blank" rel="noreferrer" className="flex items-center gap-3 hover:text-gold transition-colors group">
               <span className="size-8 rounded-lg glass-gold flex items-center justify-center group-hover:scale-110 transition-transform"><Instagram className="size-3.5 text-gold" /></span>
               Instagram
             </a> : null}

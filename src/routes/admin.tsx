@@ -232,13 +232,11 @@ function PrivateEditor() {
             {[
               ["Family Information (extra notes)", "family_info"],
               ["Salary Details (extra notes)", "salary_details"],
-              ["Assets Information", "assets_information"],
-              ["Future Plans", "future_plans"],
-              ["Additional Personal Information", "additional_info"],
               ["Sensitive Details", "sensitive_details"],
             ].map(([label, name]) => (
               <TextField key={name} label={label} name={name} value={(data as any)[name]} multiline />
             ))}
+
           </div>
         </div>
         <div className="flex justify-end mt-6">

@@ -825,11 +825,9 @@ function PrivateSection() {
                   {[
                     ["Family Notes", data.family_info],
                     ["Salary Notes", data.salary_details],
-                    ["Assets", data.assets_information],
-                    ["Future Plans", data.future_plans],
-                    ["Additional", data.additional_info],
                     ["Sensitive Details", data.sensitive_details],
                   ].filter(([, v]) => v).map(([title, body]) => (
+
                     <div key={title as string} className="glass rounded-2xl p-6">
                       <p className="text-[10px] uppercase tracking-[0.3em] text-gold font-accent font-semibold mb-3">{title as string}</p>
                       <p className="text-sm text-ivory/80 leading-relaxed whitespace-pre-line">{body as string}</p>

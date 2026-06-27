@@ -774,9 +774,36 @@ function PrivateSection() {
                   transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                   className="text-left grid gap-4 mt-10"
                 >
+                  <DetailBlock title="Personal Details" rows={[
+                    ["Name", PERSONAL_STATIC.personal.name],
+                    ["DOB", PERSONAL_STATIC.personal.dob],
+                    ["Height", PERSONAL_STATIC.personal.height],
+                  ]} />
+                  <DetailBlock title="Education" rows={[
+                    ["SSC", PERSONAL_STATIC.education.ssc],
+                    ["Inter", PERSONAL_STATIC.education.inter],
+                    ["B.Tech (ECE)", PERSONAL_STATIC.education.btech],
+                  ]} />
+                  <DetailBlock title="Work Details" rows={[
+                    ["Organization", data.work_organization],
+                    ["Office Location", data.work_office_location],
+                    ["CTC", data.work_ctc],
+                    ["Designation", data.work_designation],
+                  ]} />
+                  <DetailBlock title="Family Details" rows={[
+                    ["Father Name", PERSONAL_STATIC.family.fatherName],
+                    ["Mother Name", PERSONAL_STATIC.family.motherName],
+                    ["Brother", PERSONAL_STATIC.family.brother],
+                    ["Sister in Law", PERSONAL_STATIC.family.sisterInLaw],
+                  ]} />
+                  <div className="glass rounded-2xl p-6">
+                    <p className="text-[10px] uppercase tracking-[0.3em] text-gold font-accent font-semibold mb-3">Residential Address</p>
+                    <p className="text-sm text-ivory/80 leading-relaxed whitespace-pre-line">{PERSONAL_STATIC.residentialAddress}</p>
+                  </div>
+
                   {[
-                    ["Family", data.family_info],
-                    ["Salary Details", data.salary_details],
+                    ["Family Notes", data.family_info],
+                    ["Salary Notes", data.salary_details],
                     ["Assets", data.assets_information],
                     ["Future Plans", data.future_plans],
                     ["Additional", data.additional_info],
@@ -784,11 +811,12 @@ function PrivateSection() {
                   ].filter(([, v]) => v).map(([title, body]) => (
                     <div key={title as string} className="glass rounded-2xl p-6">
                       <p className="text-[10px] uppercase tracking-[0.3em] text-gold font-accent font-semibold mb-3">{title as string}</p>
-                      <p className="text-sm text-ivory/80 leading-relaxed">{body as string}</p>
+                      <p className="text-sm text-ivory/80 leading-relaxed whitespace-pre-line">{body as string}</p>
                     </div>
                   ))}
                 </motion.div>
               )}
+
             </div>
           </div>
         </Reveal>

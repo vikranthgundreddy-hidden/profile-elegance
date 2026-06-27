@@ -226,6 +226,10 @@ export type Database = {
           salary_details: string | null
           sensitive_details: string | null
           updated_at: string
+          work_ctc: string | null
+          work_designation: string | null
+          work_office_location: string | null
+          work_organization: string | null
         }
         Insert: {
           additional_info?: string | null
@@ -237,6 +241,10 @@ export type Database = {
           salary_details?: string | null
           sensitive_details?: string | null
           updated_at?: string
+          work_ctc?: string | null
+          work_designation?: string | null
+          work_office_location?: string | null
+          work_organization?: string | null
         }
         Update: {
           additional_info?: string | null
@@ -248,6 +256,10 @@ export type Database = {
           salary_details?: string | null
           sensitive_details?: string | null
           updated_at?: string
+          work_ctc?: string | null
+          work_designation?: string | null
+          work_office_location?: string | null
+          work_organization?: string | null
         }
         Relationships: []
       }

@@ -213,17 +213,33 @@ function PrivateEditor() {
   return (
     <Card className="p-6">
       <form onSubmit={handle}>
-        <div className="space-y-5">
-          {[
-            ["Family Information", "family_info"],
-            ["Salary Details", "salary_details"],
-            ["Assets Information", "assets_information"],
-            ["Future Plans", "future_plans"],
-            ["Additional Personal Information", "additional_info"],
-            ["Sensitive Details", "sensitive_details"],
-          ].map(([label, name]) => (
-            <TextField key={name} label={label} name={name} value={(data as any)[name]} multiline />
-          ))}
+        <div className="space-y-8">
+          <div>
+            <h3 className="text-sm font-semibold text-navy mb-3 uppercase tracking-wider">Work Details</h3>
+            <div className="grid sm:grid-cols-2 gap-4">
+              <TextField label="Organization" name="work_organization" value={(data as any).work_organization} />
+              <TextField label="Office Location" name="work_office_location" value={(data as any).work_office_location} />
+              <TextField label="CTC" name="work_ctc" value={(data as any).work_ctc} />
+              <TextField label="Designation" name="work_designation" value={(data as any).work_designation} />
+            </div>
+            <p className="text-xs text-navy/50 mt-2">
+              Personal, education, family and address details are static — edit them in <code>src/lib/personal-static.ts</code>.
+            </p>
+          </div>
+
+          <div className="space-y-5 pt-6 border-t border-navy/10">
+            <h3 className="text-sm font-semibold text-navy mb-1 uppercase tracking-wider">Additional Private Notes</h3>
+            {[
+              ["Family Information (extra notes)", "family_info"],
+              ["Salary Details (extra notes)", "salary_details"],
+              ["Assets Information", "assets_information"],
+              ["Future Plans", "future_plans"],
+              ["Additional Personal Information", "additional_info"],
+              ["Sensitive Details", "sensitive_details"],
+            ].map(([label, name]) => (
+              <TextField key={name} label={label} name={name} value={(data as any)[name]} multiline />
+            ))}
+          </div>
         </div>
         <div className="flex justify-end mt-6">
           <Button type="submit" className="bg-navy text-ivory hover:bg-navy/90">Save Changes</Button>
@@ -232,6 +248,7 @@ function PrivateEditor() {
     </Card>
   );
 }
+
 
 // ============ TIMELINE ============
 function TimelineEditor() {

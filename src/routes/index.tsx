@@ -13,6 +13,8 @@ import {
   profileQuery, personalDetailsQuery, timelineQuery, galleryQuery, hobbiesQuery,
 } from "@/lib/site-data";
 import { unlockPrivate } from "@/lib/private.functions";
+import { PERSONAL_STATIC } from "@/lib/personal-static";
+
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -711,7 +713,26 @@ function PersonalDetails({ pd }: { pd: any }) {
 }
 
 /* ============ PRIVATE ============ */
+function DetailBlock({ title, rows }: { title: string; rows: [string, any][] }) {
+  const visible = rows.filter(([, v]) => v != null && String(v).trim() !== "");
+  if (visible.length === 0) return null;
+  return (
+    <div className="glass rounded-2xl p-6">
+      <p className="text-[10px] uppercase tracking-[0.3em] text-gold font-accent font-semibold mb-4">{title}</p>
+      <dl className="grid sm:grid-cols-2 gap-x-6 gap-y-3">
+        {visible.map(([k, v]) => (
+          <div key={k} className="flex flex-col">
+            <dt className="text-[10px] uppercase tracking-[0.2em] text-ivory/40 font-accent">{k}</dt>
+            <dd className="text-sm text-ivory/85 leading-snug mt-1">{String(v)}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  );
+}
+
 function PrivateSection() {
+
   const [password, setPassword] = useState("");
   const [data, setData] = useState<any | null>(null);
   const [loading, setLoading] = useState(false);

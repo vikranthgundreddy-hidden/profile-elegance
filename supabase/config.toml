@@ -1,1 +1,4 @@
 project_id = "wasnbcktjggqakyjubzi"
+
+[functions.unlock-private]
+verify_jwt = false

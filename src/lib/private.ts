@@ -11,8 +11,8 @@ export async function unlockPrivate({ data }: { data: { password: string } }) {
     // supabase-js stuffs the JSON error body into FunctionsHttpError.context
     let message = error.message || "Incorrect password";
     try {
-      // @ts-expect-error - context exists on FunctionsHttpError
-      const ctx = error.context;
+      // @ts-ignore - context exists on FunctionsHttpError
+      const ctx = (error as any).context;
       if (ctx && typeof ctx.json === "function") {
         const body = await ctx.json();
         if (body?.error) message = body.error;

@@ -36,7 +36,7 @@ const PAGE_HEAD = (
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content="/og-image.jpg" />
     <link rel="canonical" href="/" />
-    <link rel="preload" as="image" href={heroPortrait} fetchpriority="high" />
+    <link rel="preload" as="image" href={heroPortrait} />
     <script type="application/ld+json">{JSON.stringify({
       "@context": "https://schema.org", "@type": "Person",
       name: "Vikranth", jobTitle: "Tech Lead & Senior Backend Developer",

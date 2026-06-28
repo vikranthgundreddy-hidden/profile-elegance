@@ -1,4 +1,5 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -7,13 +8,16 @@ import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { Toaster } from "@/components/ui/sonner";
 
-export const Route = createFileRoute("/auth")({
-  ssr: false,
-  head: () => ({ meta: [{ title: "Admin Sign In" }, { name: "robots", content: "noindex" }] }),
-  component: AuthPage,
-});
+export default function AuthPage() {
+  return (
+    <>
+      <Helmet><title>Admin Sign In</title><meta name="robots" content="noindex" /></Helmet>
+      <AuthPageInner />
+    </>
+  );
+}
 
-function AuthPage() {
+function AuthPageInner() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -21,7 +25,7 @@ function AuthPage() {
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => {
-      if (data.user) navigate({ to: "/admin", replace: true });
+      if (data.user) navigate("/admin", { replace: true });
     });
   }, [navigate]);
 
@@ -40,7 +44,7 @@ function AuthPage() {
             const { error } = await supabase.auth.signInWithPassword({ email, password });
             setLoading(false);
             if (error) { toast.error(error.message); return; }
-            navigate({ to: "/admin", replace: true });
+            navigate("/admin", { replace: true });
           }}
           className="space-y-5 bg-card p-8 ring-1 ring-navy/8 shadow-editorial rounded-sm"
         >

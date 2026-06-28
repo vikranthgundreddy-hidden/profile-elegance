@@ -1,4 +1,5 @@
-import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
+import { useNavigate, Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { useEffect, useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
@@ -12,19 +13,22 @@ import { toast } from "sonner";
 import { Toaster } from "@/components/ui/sonner";
 import { LogOut, Trash2, Upload, Plus, ExternalLink, ArrowLeft } from "lucide-react";
 
-export const Route = createFileRoute("/admin")({
-  ssr: false,
-  head: () => ({ meta: [{ title: "Admin Dashboard" }, { name: "robots", content: "noindex" }] }),
-  component: AdminPage,
-});
+export default function AdminPage() {
+  return (
+    <>
+      <Helmet><title>Admin Dashboard</title><meta name="robots" content="noindex" /></Helmet>
+      <AdminPageInner />
+    </>
+  );
+}
 
-function AdminPage() {
+function AdminPageInner() {
   const navigate = useNavigate();
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => {
-      if (!data.user) navigate({ to: "/auth", replace: true });
+      if (!data.user) navigate("/auth", { replace: true });
       else setReady(true);
     });
   }, [navigate]);
@@ -44,7 +48,7 @@ function AdminPage() {
           </div>
           <Button
             variant="ghost" size="sm"
-            onClick={async () => { await supabase.auth.signOut(); navigate({ to: "/auth", replace: true }); }}
+            onClick={async () => { await supabase.auth.signOut(); navigate("/auth", { replace: true }); }}
           >
             <LogOut className="size-4 mr-2" /> Sign out
           </Button>

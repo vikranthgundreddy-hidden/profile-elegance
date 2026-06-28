@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { Helmet } from "react-helmet-async";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { Suspense, useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, useScroll, useSpring, useTransform } from "framer-motion";
@@ -12,7 +12,7 @@ import {
 import {
   profileQuery, personalDetailsQuery, timelineQuery, galleryQuery, hobbiesQuery,
 } from "@/lib/site-data";
-import { unlockPrivate } from "@/lib/private.functions";
+import { unlockPrivate } from "@/lib/private";
 import { PERSONAL_STATIC } from "@/lib/personal-static";
 
 import { supabase } from "@/integrations/supabase/client";
@@ -25,34 +25,26 @@ import { Toaster } from "@/components/ui/sonner";
 
 import heroPortrait from "@/assets/hero-portrait.jpg";
 
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Vikranth — A Personal Introduction" },
-      { name: "description", content: "A considered personal introduction by Vikranth — Tech Lead & Senior Backend Developer based in Bengaluru." },
-      { property: "og:title", content: "Vikranth — A Personal Introduction" },
-      { property: "og:description", content: "Tech Lead & Senior Backend Developer based in Bengaluru. A considered introduction for prospective brides and their families." },
-      { property: "og:type", content: "website" },
-      { property: "og:image", content: "/og-image.jpg" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: "/og-image.jpg" },
-    ],
-    links: [
-      { rel: "canonical", href: "/" },
-      { rel: "preload", as: "image", href: heroPortrait, fetchPriority: "high" },
-    ],
-    scripts: [{
-      type: "application/ld+json",
-      children: JSON.stringify({
-        "@context": "https://schema.org", "@type": "Person",
-        name: "Vikranth", jobTitle: "Tech Lead & Senior Backend Developer",
-        worksFor: { "@type": "Organization", name: "Global MNC" },
-        address: { "@type": "PostalAddress", addressLocality: "Bengaluru", addressCountry: "IN" },
-      }),
-    }],
-  }),
-  component: HomePage,
-});
+const PAGE_HEAD = (
+  <Helmet>
+    <title>Vikranth — A Personal Introduction</title>
+    <meta name="description" content="A considered personal introduction by Vikranth — Tech Lead & Senior Backend Developer based in Bengaluru." />
+    <meta property="og:title" content="Vikranth — A Personal Introduction" />
+    <meta property="og:description" content="Tech Lead & Senior Backend Developer based in Bengaluru. A considered introduction for prospective brides and their families." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/og-image.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="/og-image.jpg" />
+    <link rel="canonical" href="/" />
+    <link rel="preload" as="image" href={heroPortrait} />
+    <script type="application/ld+json">{JSON.stringify({
+      "@context": "https://schema.org", "@type": "Person",
+      name: "Vikranth", jobTitle: "Tech Lead & Senior Backend Developer",
+      worksFor: { "@type": "Organization", name: "Global MNC" },
+      address: { "@type": "PostalAddress", addressLocality: "Bengaluru", addressCountry: "IN" },
+    })}</script>
+  </Helmet>
+);
 
 const NAV = [
   { id: "home", label: "Home" },
@@ -68,8 +60,10 @@ const HOBBY_ICONS: Record<string, React.ComponentType<{ className?: string }>> =
   Plane, BookOpen, Cpu, Dumbbell, Music, Camera, Film, ChefHat,
 };
 
-function HomePage() {
+export default function HomePage() {
   return (
+    <>
+    {PAGE_HEAD}
     <div className="min-h-screen bg-midnight text-ivory selection:bg-gold/30 overflow-x-hidden">
       <Toaster position="top-center" richColors theme="dark" />
       <AuroraField />
@@ -83,6 +77,7 @@ function HomePage() {
       <FloatingActions />
       <BackToTop />
     </div>
+    </>
   );
 }
 

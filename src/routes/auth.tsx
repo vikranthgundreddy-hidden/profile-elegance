@@ -26,7 +26,7 @@ function AuthPage() {
   }, [navigate]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-ivory px-6">
+    <div className="light-scope min-h-screen flex items-center justify-center bg-ivory text-navy px-6">
       <Toaster position="top-center" richColors />
       <div className="w-full max-w-md">
         <div className="text-center mb-10">

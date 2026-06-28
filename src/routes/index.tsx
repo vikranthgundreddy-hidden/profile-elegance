@@ -60,8 +60,10 @@ const HOBBY_ICONS: Record<string, React.ComponentType<{ className?: string }>> =
   Plane, BookOpen, Cpu, Dumbbell, Music, Camera, Film, ChefHat,
 };
 
-function HomePage() {
+export default function HomePage() {
   return (
+    <>
+    {PAGE_HEAD}
     <div className="min-h-screen bg-midnight text-ivory selection:bg-gold/30 overflow-x-hidden">
       <Toaster position="top-center" richColors theme="dark" />
       <AuroraField />

@@ -22,7 +22,7 @@ export default function AdminPage() {
   );
 }
 
-function AdminPage() {
+function AdminPageInner() {
   const navigate = useNavigate();
   const [ready, setReady] = useState(false);
 

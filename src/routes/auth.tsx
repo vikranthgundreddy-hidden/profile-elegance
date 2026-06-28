@@ -17,7 +17,7 @@ export default function AuthPage() {
   );
 }
 
-function AuthPage() {
+function AuthPageInner() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

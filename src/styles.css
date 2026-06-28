@@ -129,6 +129,40 @@
   .font-accent { font-family: var(--font-accent); }
 }
 
+.light-scope {
+  --background: #F8F5F0;
+  --foreground: #08111F;
+  --card: #ffffff;
+  --card-foreground: #08111F;
+  --popover: #ffffff;
+  --popover-foreground: #08111F;
+  --primary: #08111F;
+  --primary-foreground: #F8F5F0;
+  --secondary: rgba(8, 17, 31, 0.06);
+  --secondary-foreground: #08111F;
+  --muted: rgba(8, 17, 31, 0.05);
+  --muted-foreground: rgba(8, 17, 31, 0.6);
+  --accent: rgba(8, 17, 31, 0.08);
+  --accent-foreground: #08111F;
+  --border: rgba(8, 17, 31, 0.12);
+  --input: rgba(8, 17, 31, 0.25);
+  --ring: #D4AF37;
+  color: #08111F;
+}
+.light-scope input,
+.light-scope textarea,
+.light-scope select {
+  background-color: #ffffff !important;
+  color: #08111F !important;
+  border-color: rgba(8, 17, 31, 0.2) !important;
+}
+.light-scope input::placeholder,
+.light-scope textarea::placeholder {
+  color: rgba(8, 17, 31, 0.45) !important;
+}
+
+
+
 @layer utilities {
   .glass {
     background: rgba(255, 255, 255, 0.04);

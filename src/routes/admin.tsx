@@ -32,7 +32,7 @@ function AdminPage() {
   if (!ready) return <div className="min-h-screen flex items-center justify-center text-navy/50 text-sm">Loading…</div>;
 
   return (
-    <div className="min-h-screen bg-ivory">
+    <div className="light-scope min-h-screen bg-ivory text-navy">
       <Toaster position="top-center" richColors />
       <header className="border-b border-navy/8 bg-ivory/90 backdrop-blur-md sticky top-0 z-30">
         <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">

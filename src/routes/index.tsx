@@ -77,6 +77,7 @@ export default function HomePage() {
       <FloatingActions />
       <BackToTop />
     </div>
+    </>
   );
 }
 

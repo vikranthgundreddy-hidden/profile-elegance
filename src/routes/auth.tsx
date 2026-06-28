@@ -21,7 +21,7 @@ function AuthPage() {
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => {
-      if (data.user) navigate({ to: "/admin", replace: true });
+      if (data.user) navigate("/admin", { replace: true });
     });
   }, [navigate]);
 
@@ -40,7 +40,7 @@ function AuthPage() {
             const { error } = await supabase.auth.signInWithPassword({ email, password });
             setLoading(false);
             if (error) { toast.error(error.message); return; }
-            navigate({ to: "/admin", replace: true });
+            navigate("/admin", { replace: true });
           }}
           className="space-y-5 bg-card p-8 ring-1 ring-navy/8 shadow-editorial rounded-sm"
         >

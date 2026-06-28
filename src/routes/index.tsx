@@ -12,7 +12,7 @@ import {
 import {
   profileQuery, personalDetailsQuery, timelineQuery, galleryQuery, hobbiesQuery,
 } from "@/lib/site-data";
-import { unlockPrivate } from "@/lib/private.functions";
+import { unlockPrivate } from "@/lib/private";
 import { PERSONAL_STATIC } from "@/lib/personal-static";
 
 import { supabase } from "@/integrations/supabase/client";

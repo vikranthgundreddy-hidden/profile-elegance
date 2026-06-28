@@ -24,7 +24,7 @@ function AdminPage() {
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => {
-      if (!data.user) navigate({ to: "/auth", replace: true });
+      if (!data.user) navigate("/auth", { replace: true });
       else setReady(true);
     });
   }, [navigate]);
@@ -44,7 +44,7 @@ function AdminPage() {
           </div>
           <Button
             variant="ghost" size="sm"
-            onClick={async () => { await supabase.auth.signOut(); navigate({ to: "/auth", replace: true }); }}
+            onClick={async () => { await supabase.auth.signOut(); navigate("/auth", { replace: true }); }}
           >
             <LogOut className="size-4 mr-2" /> Sign out
           </Button>

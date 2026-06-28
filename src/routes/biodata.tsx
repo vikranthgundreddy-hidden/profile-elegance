@@ -5,7 +5,7 @@
 import { createFileRoute, useSearch } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { z } from "zod";
-import { unlockPrivate } from "@/lib/private.functions";
+import { unlockPrivate } from "@/lib/private";
 import { supabase } from "@/integrations/supabase/client";
 import { Printer } from "lucide-react";
 

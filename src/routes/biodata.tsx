@@ -1,23 +1,17 @@
 // Printable biodata route. The browser-side page renders a clean A4-style
 // document; the user uses the print button (or Ctrl/Cmd+P → Save as PDF) to
 // produce the actual PDF. The route requires a valid token query param,
-// which is the same private password validated by a server function.
-import { createFileRoute, useSearch } from "@tanstack/react-router";
+// which is the same private password validated server-side.
+import { useSearchParams } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { useEffect, useState } from "react";
-import { z } from "zod";
 import { unlockPrivate } from "@/lib/private";
 import { supabase } from "@/integrations/supabase/client";
 import { Printer } from "lucide-react";
 
-export const Route = createFileRoute("/biodata")({
-  ssr: false,
-  head: () => ({ meta: [{ title: "Biodata — Vikranth" }, { name: "robots", content: "noindex" }] }),
-  validateSearch: z.object({ token: z.string().optional() }),
-  component: BiodataPage,
-});
-
-function BiodataPage() {
-  const { token } = useSearch({ from: "/biodata" });
+export default function BiodataPage() {
+  const [searchParams] = useSearchParams();
+  const token = searchParams.get("token") ?? undefined;
   const [state, setState] = useState<"checking" | "ok" | "denied">("checking");
   const [profile, setProfile] = useState<any>(null);
   const [pd, setPd] = useState<any>(null);

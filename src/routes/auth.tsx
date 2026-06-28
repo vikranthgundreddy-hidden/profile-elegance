@@ -1,4 +1,5 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -7,11 +8,14 @@ import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { Toaster } from "@/components/ui/sonner";
 
-export const Route = createFileRoute("/auth")({
-  ssr: false,
-  head: () => ({ meta: [{ title: "Admin Sign In" }, { name: "robots", content: "noindex" }] }),
-  component: AuthPage,
-});
+export default function AuthPage() {
+  return (
+    <>
+      <Helmet><title>Admin Sign In</title><meta name="robots" content="noindex" /></Helmet>
+      <AuthPageInner />
+    </>
+  );
+}
 
 function AuthPage() {
   const navigate = useNavigate();

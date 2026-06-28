@@ -1,4 +1,5 @@
-import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
+import { useNavigate, Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { useEffect, useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
@@ -12,11 +13,14 @@ import { toast } from "sonner";
 import { Toaster } from "@/components/ui/sonner";
 import { LogOut, Trash2, Upload, Plus, ExternalLink, ArrowLeft } from "lucide-react";
 
-export const Route = createFileRoute("/admin")({
-  ssr: false,
-  head: () => ({ meta: [{ title: "Admin Dashboard" }, { name: "robots", content: "noindex" }] }),
-  component: AdminPage,
-});
+export default function AdminPage() {
+  return (
+    <>
+      <Helmet><title>Admin Dashboard</title><meta name="robots" content="noindex" /></Helmet>
+      <AdminPageInner />
+    </>
+  );
+}
 
 function AdminPage() {
   const navigate = useNavigate();

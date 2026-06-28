@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { Helmet } from "react-helmet-async";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { Suspense, useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, useScroll, useSpring, useTransform } from "framer-motion";
@@ -25,34 +25,26 @@ import { Toaster } from "@/components/ui/sonner";
 
 import heroPortrait from "@/assets/hero-portrait.jpg";
 
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Vikranth — A Personal Introduction" },
-      { name: "description", content: "A considered personal introduction by Vikranth — Tech Lead & Senior Backend Developer based in Bengaluru." },
-      { property: "og:title", content: "Vikranth — A Personal Introduction" },
-      { property: "og:description", content: "Tech Lead & Senior Backend Developer based in Bengaluru. A considered introduction for prospective brides and their families." },
-      { property: "og:type", content: "website" },
-      { property: "og:image", content: "/og-image.jpg" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: "/og-image.jpg" },
-    ],
-    links: [
-      { rel: "canonical", href: "/" },
-      { rel: "preload", as: "image", href: heroPortrait, fetchPriority: "high" },
-    ],
-    scripts: [{
-      type: "application/ld+json",
-      children: JSON.stringify({
-        "@context": "https://schema.org", "@type": "Person",
-        name: "Vikranth", jobTitle: "Tech Lead & Senior Backend Developer",
-        worksFor: { "@type": "Organization", name: "Global MNC" },
-        address: { "@type": "PostalAddress", addressLocality: "Bengaluru", addressCountry: "IN" },
-      }),
-    }],
-  }),
-  component: HomePage,
-});
+const PAGE_HEAD = (
+  <Helmet>
+    <title>Vikranth — A Personal Introduction</title>
+    <meta name="description" content="A considered personal introduction by Vikranth — Tech Lead & Senior Backend Developer based in Bengaluru." />
+    <meta property="og:title" content="Vikranth — A Personal Introduction" />
+    <meta property="og:description" content="Tech Lead & Senior Backend Developer based in Bengaluru. A considered introduction for prospective brides and their families." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/og-image.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="/og-image.jpg" />
+    <link rel="canonical" href="/" />
+    <link rel="preload" as="image" href={heroPortrait} fetchpriority="high" />
+    <script type="application/ld+json">{JSON.stringify({
+      "@context": "https://schema.org", "@type": "Person",
+      name: "Vikranth", jobTitle: "Tech Lead & Senior Backend Developer",
+      worksFor: { "@type": "Organization", name: "Global MNC" },
+      address: { "@type": "PostalAddress", addressLocality: "Bengaluru", addressCountry: "IN" },
+    })}</script>
+  </Helmet>
+);
 
 const NAV = [
   { id: "home", label: "Home" },

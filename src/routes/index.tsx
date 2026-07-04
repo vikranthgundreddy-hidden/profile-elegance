@@ -730,6 +730,7 @@ function PrivateSection() {
 
   const [password, setPassword] = useState("");
   const [data, setData] = useState<any | null>(null);
+  const [unlocked, setUnlocked] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -739,6 +740,7 @@ function PrivateSection() {
     try {
       const result = await unlockPrivate({ data: { password } });
       setData(result);
+      setUnlocked(true);
       toast.success("Access granted");
     } catch {
       setError("Incorrect password.");
@@ -747,24 +749,8 @@ function PrivateSection() {
       setLoading(false);
     }
   };
-
-  return (
-    <section id="private" className="relative py-32 md:py-40 px-5">
-      <div className="max-w-3xl mx-auto">
-        <Reveal>
-          <div className="relative glass-strong rounded-[2rem] p-10 md:p-14 text-center overflow-hidden border-gradient-gold">
-            <div aria-hidden className="absolute -top-40 left-1/2 -translate-x-1/2 size-80 rounded-full bg-gold/15 blur-3xl" />
-            <div className="relative">
-              <div className="mx-auto mb-8 inline-flex items-center justify-center size-16 rounded-2xl glass-gold pulse-glow">
-                <Lock className="size-5 text-gold" />
-              </div>
-              <Eyebrow>Restricted Access</Eyebrow>
-              <h2 className="font-display text-4xl md:text-5xl mt-5 text-ivory">Private Details</h2>
-              <p className="text-ivory/55 mt-4 max-w-md mx-auto">
-                For families in serious conversation. Please request the access password.
-              </p>
-
-              {!data ? (
+...
+              {!unlocked ? (
                 <form onSubmit={submit} className="max-w-md mx-auto mt-10">
                   <div className="relative">
                     <input

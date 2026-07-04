@@ -730,6 +730,7 @@ function PrivateSection() {
 
   const [password, setPassword] = useState("");
   const [data, setData] = useState<any | null>(null);
+  const [unlocked, setUnlocked] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -739,6 +740,7 @@ function PrivateSection() {
     try {
       const result = await unlockPrivate({ data: { password } });
       setData(result);
+      setUnlocked(true);
       toast.success("Access granted");
     } catch {
       setError("Incorrect password.");
@@ -763,8 +765,7 @@ function PrivateSection() {
               <p className="text-ivory/55 mt-4 max-w-md mx-auto">
                 For families in serious conversation. Please request the access password.
               </p>
-
-              {!data ? (
+              {!unlocked ? (
                 <form onSubmit={submit} className="max-w-md mx-auto mt-10">
                   <div className="relative">
                     <input

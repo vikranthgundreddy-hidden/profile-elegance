@@ -30,24 +30,33 @@ Deno.serve(async (req) => {
   }
 
   try {
-    const expected = Deno.env.get("PRIVATE_SECTION_PASSWORD");
-    if (!expected) {
+    const expectedRaw = Deno.env.get("PRIVATE_SECTION_PASSWORD");
+    if (!expectedRaw) {
+      console.error("[unlock-private] PRIVATE_SECTION_PASSWORD is not set in edge function secrets");
       return new Response(
         JSON.stringify({ error: "PRIVATE_SECTION_PASSWORD is not configured" }),
         { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } },
       );
     }
+    // Trim to defend against trailing newlines/spaces introduced when pasting
+    // the secret value into the dashboard or copying from a .env file.
+    const expected = expectedRaw.trim();
 
     const body = await req.json().catch(() => null);
-    const password = body?.password;
-    if (typeof password !== "string" || password.length < 1 || password.length > 200) {
+    const passwordRaw = body?.password;
+    if (typeof passwordRaw !== "string" || passwordRaw.length < 1 || passwordRaw.length > 200) {
       return new Response(JSON.stringify({ error: "Incorrect password" }), {
         status: 401,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
+    const password = passwordRaw.trim();
 
     if (!timingSafeEqual(password, expected)) {
+      // Log lengths only (never the values) so misconfigured secrets are diagnosable.
+      console.warn(
+        `[unlock-private] password mismatch (submitted length=${password.length}, expected length=${expected.length})`,
+      );
       return new Response(JSON.stringify({ error: "Incorrect password" }), {
         status: 401,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
